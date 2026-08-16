@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m py_compile src/features.py)",
+      "Bash(python -m py_compile src/dataset.py)",
+      "Bash(python -m py_compile src/model.py)",
+      "Bash(python -m py_compile src/train.py)",
+      "Bash(python -m py_compile src/evaluate.py)",
+      "Skill(run)",
+      "Bash(curl -s \"https://zenodo.org/api/records/1290750\")",
+      "Bash(python3 -c \"import sys,json; r=json.load\\(sys.stdin\\); [print\\(f['key'], f['links']['self']\\) for f in r['files']]\")",
+      "Bash(python3 *)",
+      "Bash(python *)"
+    ]
+  }
+}

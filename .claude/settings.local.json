@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 *)",
+      "Bash(/Users/ivan/Documents/masters/music-labeling-mcp/instrument-id-mvp/venv/bin/python --version)",
+      "Bash(venv/bin/python -m ipykernel_launcher --help)",
+      "Bash(venv/bin/python -c \"import ipykernel; print\\(ipykernel.__version__\\)\")",
+      "Bash(venv/bin/python -c \"import ipywidgets; print\\(ipywidgets.__version__\\)\")",
+      "Bash(venv/bin/python -c \"import zmq; print\\(zmq.__version__\\)\")",
+      "Bash(venv/bin/python -m ipykernel_launcher -f /tmp/test_kernel.json)",
+      "Bash(kill %1)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(venv/bin/jupyter notebook *)",
+      "Bash(/Users/ivan/Documents/masters/music-labeling-mcp/instrument-id-mvp/venv/bin/python -c \"import runpy; print\\('runpy ok'\\)\")",
+      "Read(//usr/bin/**)",
+      "Read(//Users/ivan/Library/**)",
+      "Bash(/usr/bin/python3 --version)",
+      "Read(//Users/ivan/.pyenv/versions/**)",
+      "Read(//opt/homebrew/bin/**)"
+    ]
+  }
+}

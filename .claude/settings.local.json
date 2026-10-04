@@ -16,7 +16,12 @@
       "Read(//Users/ivan/Library/**)",
       "Bash(/usr/bin/python3 --version)",
       "Read(//Users/ivan/.pyenv/versions/**)",
-      "Read(//opt/homebrew/bin/**)"
+      "Read(//opt/homebrew/bin/**)",
+      "Bash(ls venv/bin/python .venv/bin/python)",
+      "Bash(ls checkpoints/DeltaHarmonicCNN*)",
+      "Bash(venv/bin/python *)",
+      "Bash(venv/bin/pip install *)",
+      "Bash(python *)"
     ]
   }
 }

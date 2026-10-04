@@ -28,7 +28,7 @@ import numpy as np
 import torch
 from torch.utils.data import Dataset
 
-from features import compute_mel_spectrogram
+from features import compute_mel_spectrogram, compute_cqt_spectrogram, compute_hpss_spectrogram
 
 CLASSES = ["cel", "cla", "flu", "gac", "gel", "org", "pia", "sax", "tru", "vio", "voi"]
 CLASS_TO_IDX = {c: i for i, c in enumerate(CLASSES)}
@@ -99,10 +99,25 @@ def train_val_split(
     )
 
 
+_LOG_ZERO = float(np.log(1e-9))  # -20.72 — silence sentinel
+
+
 class IRMASDataset(Dataset):
-    def __init__(self, wav_paths: List[Path], labels: List[np.ndarray]):
+    def __init__(
+        self,
+        wav_paths: List[Path],
+        labels: List[np.ndarray],
+        pitch_shift_bins: int = 0,
+        spec_augment: bool = False,
+        spec_freq_mask: int = 20,   # max mel bins to zero out per mask
+        spec_time_mask: int = 30,   # max time frames to zero out per mask
+    ):
         self.wav_paths = wav_paths
         self.labels = labels
+        self.pitch_shift_bins = pitch_shift_bins
+        self.spec_augment = spec_augment
+        self.spec_freq_mask = spec_freq_mask
+        self.spec_time_mask = spec_time_mask
 
     def __len__(self) -> int:
         return len(self.wav_paths)
@@ -110,7 +125,86 @@ class IRMASDataset(Dataset):
     def __getitem__(self, idx: int) -> Tuple[torch.Tensor, torch.Tensor]:
         mel = compute_mel_spectrogram(self.wav_paths[idx])  # [128, 130]
         x = torch.tensor(mel, dtype=torch.float32).unsqueeze(0)  # [1, 128, 130]
+
+        if self.pitch_shift_bins > 0:
+            shift = random.randint(-self.pitch_shift_bins, self.pitch_shift_bins)
+            if shift != 0:
+                x = torch.roll(x, shift, dims=1)
+                if shift > 0:
+                    x[:, :shift, :] = _LOG_ZERO
+                else:
+                    x[:, shift:, :] = _LOG_ZERO
+
+        if self.spec_augment:
+            _, F, T = x.shape
+            # Frequency mask
+            f = random.randint(0, self.spec_freq_mask)
+            f0 = random.randint(0, F - f)
+            x[:, f0:f0 + f, :] = _LOG_ZERO
+            # Time mask
+            t = random.randint(0, self.spec_time_mask)
+            t0 = random.randint(0, T - t)
+            x[:, :, t0:t0 + t] = _LOG_ZERO
+
         y = torch.tensor(self.labels[idx], dtype=torch.float32)   # [NUM_CLASSES]
+        return x, y
+
+
+class HPSSIRMASDataset(Dataset):
+    """IRMAS dataset using HPSS harmonic log-mel as input [1, 128, 130].
+
+    Only the harmonic component is returned — percussive noise is filtered out.
+    """
+
+    def __init__(self, wav_paths: List[Path], labels: List[np.ndarray]):
+        self.wav_paths = wav_paths
+        self.labels    = labels
+
+    def __len__(self) -> int:
+        return len(self.wav_paths)
+
+    def __getitem__(self, idx: int) -> Tuple[torch.Tensor, torch.Tensor]:
+        harm, _ = compute_hpss_spectrogram(self.wav_paths[idx])   # [128, 130]
+        x = torch.tensor(harm, dtype=torch.float32).unsqueeze(0)  # [1, 128, 130]
+        y = torch.tensor(self.labels[idx], dtype=torch.float32)
+        return x, y
+
+
+class HPSS2ChIRMASDataset(Dataset):
+    """IRMAS dataset with both HPSS components stacked as [2, 128, 130].
+
+    ch 0 = harmonic log-mel  (tonal timbre)
+    ch 1 = percussive log-mel (attack / onset)
+    """
+
+    def __init__(self, wav_paths: List[Path], labels: List[np.ndarray]):
+        self.wav_paths = wav_paths
+        self.labels    = labels
+
+    def __len__(self) -> int:
+        return len(self.wav_paths)
+
+    def __getitem__(self, idx: int) -> Tuple[torch.Tensor, torch.Tensor]:
+        harm, perc = compute_hpss_spectrogram(self.wav_paths[idx])  # each [128, 130]
+        x = torch.tensor(np.stack([harm, perc]), dtype=torch.float32)  # [2, 128, 130]
+        y = torch.tensor(self.labels[idx], dtype=torch.float32)
+        return x, y
+
+
+class CQTIRMASDataset(Dataset):
+    """Same as IRMASDataset but uses log-CQT features instead of log-mel."""
+
+    def __init__(self, wav_paths: List[Path], labels: List[np.ndarray]):
+        self.wav_paths = wav_paths
+        self.labels    = labels
+
+    def __len__(self) -> int:
+        return len(self.wav_paths)
+
+    def __getitem__(self, idx: int) -> Tuple[torch.Tensor, torch.Tensor]:
+        cqt = compute_cqt_spectrogram(self.wav_paths[idx])   # [168, 130]
+        x   = torch.tensor(cqt, dtype=torch.float32).unsqueeze(0)  # [1, 168, 130]
+        y   = torch.tensor(self.labels[idx], dtype=torch.float32)
         return x, y
 
 

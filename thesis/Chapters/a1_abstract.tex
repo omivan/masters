@@ -1,0 +1,163 @@
+%!TEX root = ../thesis.tex
+\renewcommand{\abstractUkr}{\chapter*{РЕФЕРАТ}\thispagestyle{empty}\renewcommand{\arraystretch}{1.5}\setfontsize{14}}
+\renewcommand{\abstractEng}{\chapter*{ABSTRACT}\thispagestyle{empty}\renewcommand{\arraystretch}{1.5}\setfontsize{14}}
+
+
+\abstractUkr
+
+Магістерську дисертацію виконано на \pageref{LastPage} аркушах, вона містить перелік посилань на використані джерела з 12 найменувань. У роботі наведено 1 рисунок та 1 таблицю.
+
+\textbf{Актуальність теми.}
+Автоматична ідентифікація музичних інструментів в аудіозаписах є
+актуальною задачею музичної інформатики, яка знаходиться на перетині
+цифрової обробки сигналів і машинного навчання. Визначення складу
+інструментів у музичному записі є необхідним для автоматичної
+каталогізації, пошуку та аналізу музичних колекцій, а також для
+підтримки задач автоматичного аранжування, ремейксування та
+реставрації аудіо.
+
+Реальні музичні твори містять одночасне звучання кількох інструментів,
+тому задача відноситься до класу multi-label класифікації, де кожному
+аудіозапису може відповідати довільна підмножина інструментальних
+міток. Застосування сучасних методів глибинного навчання, зокрема
+згорткових та рекурентних нейронних мереж, відкриває можливості для
+побудови ефективних автоматизованих систем ідентифікації інструментів
+безпосередньо на основі аудіосигналу.
+
+\textbf{Мета і задачі дослідження.}
+Метою дисертаційної роботи є побудова математичного та програмного
+забезпечення методу автоматичної ідентифікації музичних інструментів
+у звуковому форматі та дослідження його ефективності для задачі
+multi-label класифікації інструментального складу аудіозаписів.
+
+Для досягнення поставленої мети вирішено такі задачі:
+
+а) проведено огляд і порівняльний аналіз існуючих методів автоматичної
+ідентифікації музичних інструментів в аудіозаписах;
+
+б) виконано аналіз і порівняння підходів до побудови математичної
+моделі методу multi-label класифікації інструментального складу,
+обрано оптимальний варіант;
+
+в) побудовано математичну модель методу, що описує повний цикл
+перетворення аудіосигналу у вектор інструментальних міток;
+
+г) проведено порівняльний аналіз варіантів конфігурації
+запропонованого методу та досліджено його властивості на
+стандартизованому наборі даних;
+
+д) виконано порівняння ефективності запропонованого методу з
+існуючими підходами.
+
+\textbf{Об'єктом дослідження} є інструментальний склад музичних творів
+у звуковому форматі та методи його автоматичної ідентифікації на основі
+цифрової обробки сигналів і машинного навчання.
+
+\textbf{Предметом дослідження} є математичне та програмне забезпечення
+методу автоматичної ідентифікації музичних інструментів (гітара, фортепіано,
+ударні, бас, скрипка тощо) на основі мел-спектрограм аудіосигналу та
+гібридної архітектури CNN~+~BiLSTM.
+
+\textbf{Методи дослідження.}
+Методи цифрової обробки аудіосигналів (STFT, мел-фільтрбанк), методи
+виділення тембральних спектральних ознак (мел-спектрограми, MFCC),
+методи multi-label класифікації на основі згорткових і рекурентних
+нейронних мереж, методи навчання та оптимізації моделей машинного
+навчання, експериментальні методи порівняльного аналізу результатів.
+
+\textbf{Ключові слова:}
+ідентифікація музичних інструментів, multi-label класифікація,
+машинне навчання, згорткові нейронні мережі, CNN, BiLSTM,
+мел-спектрограма, MFCC, бінарна крос-ентропія, F1-міра, mAP,
+музична інформатика, IRMAS, тембральний аналіз.
+
+\abstractEng
+
+The master's thesis comprises \pageref{LastPage} pages and includes a list of 12 references. The work contains 1 figure and 1 table.
+
+\textbf{Relevance.}
+Automatic identification of musical instruments in audio recordings is
+a relevant problem in music information retrieval that lies at the
+intersection of digital signal processing and machine learning.
+Determining the instrument composition of a musical recording is
+essential for automatic cataloguing, search, and analysis of music
+libraries, as well as for supporting tasks such as automatic
+arrangement, remixing, and audio restoration.
+
+Real-world musical works contain the simultaneous sound of several
+instruments, making this a multi-label classification problem where
+each audio recording may correspond to an arbitrary subset of
+instrument labels. The application of modern deep learning methods,
+in particular convolutional and recurrent neural networks, opens
+opportunities for building effective automated instrument identification
+systems directly from the audio signal.
+
+\textbf{Purpose and objectives.}
+The aim of the dissertation is to construct the mathematical and software
+support for a method of automatic identification of musical instruments
+in audio format and to investigate its effectiveness for the multi-label
+classification of the instrument composition of audio recordings.
+
+To achieve this goal, the following tasks were solved:
+
+a) a review and comparative analysis of existing methods for automatic
+identification of musical instruments in audio recordings was conducted;
+
+b) an analysis and comparison of approaches to constructing the
+mathematical model of the multi-label instrument classification method
+was performed, and the optimal variant was selected;
+
+c) a mathematical model of the method was constructed, describing the
+full pipeline from audio signal to an instrument label vector;
+
+d) a comparative analysis of configuration variants of the proposed
+method was conducted and its properties were investigated on a
+standardized dataset;
+
+e) the effectiveness of the proposed method was compared with existing
+approaches.
+
+\textbf{Object of research} is the instrument composition of musical
+works in audio format and the methods of its automatic identification
+based on digital signal processing and machine learning.
+
+\textbf{Subject of research} is the mathematical and software support
+for the method of automatic identification of musical instruments
+(guitar, piano, drums, bass, violin, etc.) based on mel-spectrograms
+of the audio signal and a hybrid CNN~+~BiLSTM architecture.
+
+\textbf{Research methods.}
+Methods of digital audio signal processing (STFT, mel filterbank),
+methods of timbral spectral feature extraction (mel-spectrograms,
+MFCC), methods of multi-label classification based on convolutional
+and recurrent neural networks, methods of training and optimization
+of machine learning models, experimental methods of comparative
+analysis of results.
+
+\textbf{Scientific novelty.}
+For the first time, a method for automatic multi-label identification
+of musical instruments in audio recordings has been proposed, based on
+mel-spectrograms and a hybrid CNN~+~BiLSTM architecture. Unlike
+existing approaches focused on single-label recognition or rule-based
+filtering, the proposed method directly models the simultaneous
+presence of multiple instruments by applying independent sigmoid
+activations per class and optimizing binary cross-entropy loss.
+
+\textbf{Practical value.}
+Based on the proposed method, software has been implemented that
+performs automatic identification of the instrument composition of
+musical recordings in audio format. The method has been verified and
+validated on the standardized IRMAS dataset, achieving F1-macro and
+mAP scores that substantially exceed the results of baseline methods.
+The obtained results may be used for the development of applied tools
+for music search, automatic annotation, and content-based retrieval
+in large audio collections.
+
+\textbf{Keywords:}
+musical instrument identification, multi-label classification,
+machine learning, convolutional neural networks, CNN, BiLSTM,
+mel-spectrogram, MFCC, binary cross-entropy, F1-score, mAP,
+music information retrieval, IRMAS, timbral analysis.
+\clearpage
+
+\pagestyle{plain}

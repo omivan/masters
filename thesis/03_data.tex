@@ -1,0 +1,70 @@
+%%% Основні відомості %%%
+
+\newcommand{\UDC}{(Внесіть правильний УДК!)} % УДК
+% УДК виглядає приблизно як 004.056.5 або 513.2, або навіть 004.056.5:513.2+519.1
+% Для того, щоб знайти правильний УДК, використовуйте каталог https://teacode.com/online/udc/
+
+\newcommand{\reportAuthor}             % ПІБ автора повністю
+{Омельченко Іван Юрійович}
+\newcommand{\reportAuthorGen}          % ПІБ автора в родовому відмінку
+{Омельченку Івану Юрійовичу}
+\newcommand{\reportAuthorGroup}        % група автора
+{КМ-51мп}
+\newcommand{\reportTitle}              % Назва роботи
+{Автоматична ідентифікація музичних інструментів в аудіозаписах з використанням методів машинного навчання}
+%% використовуйте символ "\par" або "\\" для розбиття назви на декілька рядків
+
+\newcommand{\supervisorFio}            % Науковий керівник, ПІБ повністю
+{Лось Валерій Миколайович}
+\newcommand{\supervisorRegalia}        % Науковий керівник: посада, степінь, звання
+{професор кафедри ПMA, доктор фіз.-мат. наук}              % наприклад: доцент кафедри ПМА, канд. техн. наук, доцент
+
+\newcommand{\reportOrder}{\quotes{29} травня 2025 р. \No 1808-С} % реквізити наказу
+
+\newcommand{\applicationDate}          % термін подання роботи
+{\quotes{10} червня 2025 р.}
+
+\newcommand{\assignmentDate}           % дата видачі завдання
+{\quotes{03} лютого 2025 р.}
+
+% Якщо у вас нема консультанта - залишайте поля нижче порожніми
+\newcommand{\consultFio}               % Консультант, ПІБ повністю
+{Прізвище Ім'я По батькові}
+\newcommand{\consultRegalia}           % Консультант: звання, ступінь, посада
+{посада, ступінь, звання}
+
+\newcommand{\reviewerFio}              % Рецензент, ПІБ повністю
+{---}                        
+\newcommand{\reviewerRegalia}          % Рецензент: звання, ступінь, посада
+{---}
+
+\newcommand{\consultdstuFio}           % Консультант з нормоконтролю, ПІБ повністю
+{Мальчиков Володимир Вікторович}                        
+\newcommand{\consultdstuRegalia}       % Консультант з нормоконтролю: звання, ступінь, посада
+{старший викладач кафедри ПМА}
+
+\newcommand{\YearOfDefence}            % рік захисту
+{2026}
+\newcommand{\YearOfBeginning}          
+{2026}
+
+
+
+% ************************************************************* %
+% Обробка даних
+% ************************************************************* %
+
+\newcommand{\takeSecondFIRST}[1]{%
+    \StrBefore{#1}{ }[\FirstWord]% Extract the first word
+    \StrBehind{#1}{ }[\Rest]% Extract the rest after the first word
+    \StrBefore{\Rest}{ }[\SecondWord]% Extract the second word
+    \StrBehind{\Rest}{ }[\ThirdWord]% Extract the third word
+    \SecondWord\ \MakeUppercase{\FirstWord}% Print first word and uppercase second word
+}
+
+\newcommand{\supervisorFioShort}{
+    \takeSecondFIRST{\supervisorFio}
+}
+\newcommand{\reportAuthorShort}{
+    \takeSecondFIRST{\reportAuthor}
+}

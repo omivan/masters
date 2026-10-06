@@ -1,0 +1,4 @@
+$pdf_mode = 5;
+$bibtex_use = 0;
+$xelatex = 'xelatex -synctex=1 -interaction=nonstopmode -file-line-error %O %S';
+$out_dir = 'output';

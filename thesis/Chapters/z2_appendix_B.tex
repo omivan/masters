@@ -1,0 +1,55 @@
+% %!TEX root = ../thesis.tex
+% \append{Ілюстративний матеріал}
+% \label{appendix:B}
+
+% % Вкажіть кількість сторінок презентації
+% \def\nSlides{19}
+
+% % Вкажіть назву файлу презентації
+% \def\PresentationFilename{Presentation/output/beamer.pdf}
+
+% % Рядки нижче не потрубеють втручання
+% \foreach \slide in {1,...,\nSlides} {
+%     \ifnum \slide > 1
+%         \newpage
+%     \fi
+%     \vspace*{\fill}
+%     \begin{figure}[H]\centering
+%         \includegraphics[
+%             page = \slide,
+%             width = \textwidth
+%         ]{\PresentationFilename}
+%         \caption{Слайд презентації №\slide}
+%     \end{figure}
+%     \vspace*{\fill}
+% }
+
+
+
+
+\appendix
+\append{Ілюстративний матеріал}
+\label{appendix:B}
+
+\includepdf[
+  pages=1-19,
+  nup=1x2,
+  frame,
+  scale=0.65,
+  pagecommand={%
+    \thispagestyle{plain}%
+    \edef\thissheet{\number\value{page}}%
+    \edef\sheetidx{\number\numexpr\thissheet-71\relax}%
+    \edef\firstslide{\number\numexpr\sheetidx*2+1\relax}%
+    \edef\secondslide{\number\numexpr\sheetidx*2+2\relax}%
+    \ifnum\firstslide<19
+      \begin{figure}[b]\centering
+        \caption{Слайд~\firstslide--\secondslide}%
+      \end{figure}%
+    \else
+      \begin{figure}[b]\centering
+        \caption{Слайд~\firstslide}%
+      \end{figure}%
+    \fi
+  }
+]{Presentation/output/beamer.pdf}

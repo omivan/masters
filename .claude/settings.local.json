@@ -21,7 +21,22 @@
       "Bash(ls checkpoints/DeltaHarmonicCNN*)",
       "Bash(venv/bin/python *)",
       "Bash(venv/bin/pip install *)",
-      "Bash(python *)"
+      "Bash(python *)",
+      "PowerShell(Rename-Item *)",
+      "PowerShell(cmd /c \"rename `\"C:\\\\Users\\\\ivano\\\\Documents\\\\uni\\\\masters\\\\master-paper`\" thesis\")",
+      "PowerShell(Move-Item *)",
+      "Skill(run)",
+      "PowerShell(python --version; python3 --version 2>$null; where python 2>$null; where python3 2>$null)",
+      "PowerShell(python -m venv \"C:\\\\Users\\\\ivano\\\\Documents\\\\uni\\\\masters\\\\code\\\\instrument-id-mvp\\\\venv\")",
+      "PowerShell(& \"C:\\\\Users\\\\ivano\\\\Documents\\\\uni\\\\masters\\\\code\\\\instrument-id-mvp\\\\venv\\\\Scripts\\\\pip\" install -r \"C:\\\\Users\\\\ivano\\\\Documents\\\\uni\\\\masters\\\\code\\\\instrument-id-mvp\\\\requirements.txt\")",
+      "PowerShell(latexmk *)",
+      "PowerShell(Select-String -Path \"C:\\\\Users\\\\ivano\\\\Documents\\\\uni\\\\masters\\\\thesis\\\\output\\\\main.log\" -Pattern \"undefined|citation|bibtex|biber\" | Select-Object -First 20 | ForEach-Object { $_.Line })",
+      "PowerShell(Select-String -Path \"C:\\\\Users\\\\ivano\\\\Documents\\\\uni\\\\masters\\\\thesis\\\\output\\\\main.aux\" -Pattern \"LastPage\" | ForEach-Object { $_.Line })",
+      "PowerShell(Select-String *)",
+      "PowerShell(Select-String -Path \"C:\\\\Users\\\\ivano\\\\Documents\\\\uni\\\\masters\\\\thesis\\\\output\\\\main.aux\" -Pattern \".\" | Select-Object -Last 10 | ForEach-Object { $_.Line })",
+      "PowerShell(Get-Content \"C:\\\\Users\\\\ivano\\\\.claude\\\\projects\\\\C--Users-ivano-Documents-uni-masters\\\\b8790929-497b-462d-90d0-1125e3fff74d\\\\tool-results\\\\bnroo7ky3.txt\" | Select-String \"bibtex|BibTeX|found no|Output written|up-to-date|error|Error|undefined\" | ForEach-Object { $_.Line })",
+      "PowerShell(Get-Content \"C:\\\\Users\\\\ivano\\\\.claude\\\\projects\\\\C--Users-ivano-Documents-uni-masters\\\\b8790929-497b-462d-90d0-1125e3fff74d\\\\tool-results\\\\bnroo7ky3.txt\" | Select-String \"bibtex|BibTeX|bibdata|bibstyle|Run number|rule\" | ForEach-Object { $_.Line })",
+      "PowerShell(git *)"
     ]
   }
 }

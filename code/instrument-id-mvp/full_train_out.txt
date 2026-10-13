@@ -1,0 +1,10 @@
+Device : cuda
+Full training set: 6101 clips (100%)
+Test set: 2874 clips
+
+[seed 0] test macro=0.4739  micro=0.5723
+[seed 1] test macro=0.4805  micro=0.5752
+[seed 2] test macro=0.4855  micro=0.5868
+
+Best test macro: 0.4855 -> DeepHarmonicCNN_full_seed2_best.pt
+Reference (80% train): DeepHarmonicCNN+CosineLR  macro=0.4905

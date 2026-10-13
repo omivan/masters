@@ -1,0 +1,17 @@
+Device    : cuda
+Threshold : 0.5
+Train: 4863  Val: 1238
+
+=== Han2017CNN  (1,446,123 params) ===
+  [Han2017CNN seed 0] val F1-macro: 0.5730
+  [Han2017CNN seed 1] val F1-macro: 0.6015
+  [Han2017CNN seed 2] val F1-macro: 0.5231
+  [Han2017CNN seed 3] val F1-macro: 0.6258
+  [Han2017CNN seed 4] val F1-macro: 0.5810
+Val F1-macro: mean=0.5809 ± 0.0342  (best seed 3: 0.6258)
+Saved → Han2017CNN_rec_best.pt
+
+─── Test set, every seed (5 seeds, 1-s sliding window, S2) ───
+  Han2017CNN  thr 0.3:  macro 0.4392 ± 0.0156  [0.431, 0.441, 0.432, 0.468, 0.424]   micro 0.5224 ± 0.0239
+  Han2017CNN  thr 0.4:  macro 0.4527 ± 0.0182  [0.442, 0.459, 0.447, 0.484, 0.431]   micro 0.5422 ± 0.0254
+  Han2017CNN  thr 0.5:  macro 0.4588 ± 0.0210  [0.447, 0.472, 0.444, 0.494, 0.437]   micro 0.5522 ± 0.0264

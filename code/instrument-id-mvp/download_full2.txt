@@ -1,0 +1,15 @@
+Extracting IRMAS-TrainingData.zip → C:\Users\ivano\Documents\uni\masters\code\instrument-id-mvp\data\IRMAS\training
+Training root: C:\Users\ivano\Documents\uni\masters\code\instrument-id-mvp\data\IRMAS\training\IRMAS-TrainingData
+Found classes: ['cel', 'cla', 'flu', 'gac', 'gel', 'org', 'pia', 'sax', 'tru', 'vio', 'voi']
+
+Limiting to 600 files per class …
+  gac: kept 600/637 files
+  gel: kept 600/760 files
+  org: kept 600/682 files
+  pia: kept 600/721 files
+  sax: kept 600/626 files
+  voi: kept 600/778 files
+
+Training files after pruning: 6101
+
+Done. Dataset ready at: C:\Users\ivano\Documents\uni\masters\code\instrument-id-mvp\data\IRMAS

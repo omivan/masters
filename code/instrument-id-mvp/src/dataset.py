@@ -21,6 +21,7 @@ Folder / label mapping (IRMAS official):
 from __future__ import annotations
 
 import random
+import re
 from pathlib import Path
 from typing import List, Tuple
 
@@ -33,6 +34,16 @@ from features import compute_mel_spectrogram, compute_cqt_spectrogram, compute_h
 CLASSES = ["cel", "cla", "flu", "gac", "gel", "org", "pia", "sax", "tru", "vio", "voi"]
 CLASS_TO_IDX = {c: i for i, c in enumerate(CLASSES)}
 NUM_CLASSES = len(CLASSES)
+
+# Genre tag in every IRMAS training file name, e.g. [vio][cla]2083__1.wav
+GENRES = ["cla", "jaz_blu", "pop_roc", "cou_fol", "lat_sou"]
+_GENRE_RE = re.compile(r"\[(" + "|".join(GENRES) + r")\]")
+
+
+def genre_id(wav_path: Path) -> int:
+    """Index into GENRES parsed from an IRMAS training file name (-1 if absent)."""
+    m = _GENRE_RE.search(Path(wav_path).name)
+    return GENRES.index(m.group(1)) if m else -1
 
 
 def _scan_training_dir(train_root: Path) -> Tuple[List[Path], List[np.ndarray]]:
@@ -70,26 +81,45 @@ def _scan_testing_dir(test_root: Path) -> Tuple[List[Path], List[np.ndarray]]:
     return wav_paths, labels
 
 
+def recording_id(wav_path: Path) -> str:
+    """Source-recording key of an IRMAS training clip.
+
+    IRMAS cuts each recording into ~3 excerpts that differ only in the
+    ``__<n>`` suffix: ``[cel][cla]0001__1.wav``, ``__2``, ``__3``.
+    """
+    return f"{wav_path.parent.name}/{wav_path.stem.rsplit('__', 1)[0]}"
+
+
 def train_val_split(
     wav_paths: List[Path],
     labels: List[np.ndarray],
     val_ratio: float = 0.2,
     seed: int = 42,
+    by_recording: bool = True,
 ) -> Tuple[List[Path], List[np.ndarray], List[Path], List[np.ndarray]]:
-    """Stratified 80/20 split by dominant class label."""
+    """Stratified 80/20 split by dominant class label.
+
+    by_recording=True keeps all excerpts of one recording on the same side of
+    the split. False reproduces the old per-clip split, which leaks excerpts
+    of the same recording into val and inflates val F1.
+    """
     random.seed(seed)
-    # Group indices by class
-    class_indices: dict[int, list[int]] = {i: [] for i in range(NUM_CLASSES)}
+    # Group indices by class, then by recording within the class
+    class_groups: dict[int, dict[str, list[int]]] = {i: {} for i in range(NUM_CLASSES)}
     for idx, label in enumerate(labels):
         dominant = int(np.argmax(label))
-        class_indices[dominant].append(idx)
+        key = recording_id(wav_paths[idx]) if by_recording else str(idx)
+        class_groups[dominant].setdefault(key, []).append(idx)
 
     train_idx, val_idx = [], []
-    for cls_idxs in class_indices.values():
-        random.shuffle(cls_idxs)
-        split = max(1, int(len(cls_idxs) * (1 - val_ratio)))
-        train_idx.extend(cls_idxs[:split])
-        val_idx.extend(cls_idxs[split:])
+    for groups in class_groups.values():
+        keys = sorted(groups)
+        random.shuffle(keys)
+        split = max(1, int(len(keys) * (1 - val_ratio)))
+        for k in keys[:split]:
+            train_idx.extend(groups[k])
+        for k in keys[split:]:
+            val_idx.extend(groups[k])
 
     return (
         [wav_paths[i] for i in train_idx],
@@ -111,6 +141,7 @@ class IRMASDataset(Dataset):
         spec_augment: bool = False,
         spec_freq_mask: int = 20,   # max mel bins to zero out per mask
         spec_time_mask: int = 30,   # max time frames to zero out per mask
+        genres: List[int] | None = None,   # if set, items are (x, y, genre)
     ):
         self.wav_paths = wav_paths
         self.labels = labels
@@ -118,6 +149,7 @@ class IRMASDataset(Dataset):
         self.spec_augment = spec_augment
         self.spec_freq_mask = spec_freq_mask
         self.spec_time_mask = spec_time_mask
+        self.genres = genres
 
     def __len__(self) -> int:
         return len(self.wav_paths)
@@ -147,6 +179,8 @@ class IRMASDataset(Dataset):
             x[:, :, t0:t0 + t] = _LOG_ZERO
 
         y = torch.tensor(self.labels[idx], dtype=torch.float32)   # [NUM_CLASSES]
+        if self.genres is not None:
+            return x, y, self.genres[idx]
         return x, y
 
 

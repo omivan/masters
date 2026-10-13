@@ -1,0 +1,33 @@
+Device    : cuda
+Threshold : 0.5
+Train: 4879  Val: 1222
+
+=== DeltaHarmonicCNN_1sec  (621,931 params) ===
+  [DeltaHarmonicCNN_1sec seed 0] val F1-macro: 0.5367
+  [DeltaHarmonicCNN_1sec seed 1] val F1-macro: 0.6260
+Val F1-macro: mean=0.5813 ± 0.0447  (best seed 1: 0.6260)
+Saved → DeltaHarmonicCNN_1sec_best.pt
+
+Evaluating on test set (sliding window, threshold=0.5) — 2874 clips
+
+Config                     Val mean  Val std  Test macro  Test micro
+────────────────────────────────────────────────────────────────────
+DeltaHarmonicCNN_1sec        0.5813   0.0447      0.4723      0.5721
+
+Per-class F1 (test set, threshold=0.5):
+  Class   DeltaHarmonicCNN_1
+  ────────────────────────────
+  cel                 0.359 
+  cla                 0.116 
+  flu                 0.470 
+  gac                 0.459 
+  gel                 0.601 
+  org                 0.334 
+  pia                 0.520 
+  sax                 0.604 
+  tru                 0.451 
+  vio                 0.493 
+  voi                 0.787 
+
+Published SOTA:
+  Han et al. 2017 (original)   macro=0.503  micro=0.602

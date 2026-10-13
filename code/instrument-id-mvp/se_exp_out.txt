@@ -1,0 +1,8 @@
+Device: cuda
+Train: 4879  Val: 1222
+Running 3 config(s): ['DeepHarmonicCNN+CosineLR+PitchOnly', 'DeepHarmonicCNN+CosineLR+60ep', 'SEDeepHarmonicCNN+CosineLR']
+
+=== DeepHarmonicCNN+CosineLR+PitchOnly (1 seeds × 60 epochs) ===
+    [pitch±2, CosineLR]
+    params: 655,467
+  [DeepHarmonicCNN+CosineLR+PitchOnly seed 0] F1-macro: 0.8066

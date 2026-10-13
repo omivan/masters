@@ -1,0 +1,34 @@
+Device    : cuda
+Threshold : 0.5
+Train: 4879  Val: 1222
+Han2017CNN params: 1,446,123
+
+  [Han2017CNN seed 0] val F1-macro: 0.5981
+  [Han2017CNN seed 1] val F1-macro: 0.5892
+  [Han2017CNN seed 2] val F1-macro: 0.5495
+  [Han2017CNN seed 3] val F1-macro: 0.5673
+  [Han2017CNN seed 4] val F1-macro: 0.6362
+
+Val F1-macro: mean=0.5881 ± 0.0294
+Best seed: 4  F1=0.6362
+Saved → Han2017CNN_best.pt
+
+Evaluating on test set with sliding window (threshold=0.5) …
+Test clips: 2874
+
+─── Han2017CNN — test set results ───
+F1-macro : 0.5006   (Han et al. paper: 0.503)
+F1-micro : 0.5925   (Han et al. paper: 0.602)
+
+Per-class F1:
+  cel   0.339
+  cla   0.128
+  flu   0.527
+  gac   0.528
+  gel   0.638
+  org   0.405
+  pia   0.502
+  sax   0.577
+  tru   0.428
+  vio   0.541
+  voi   0.893

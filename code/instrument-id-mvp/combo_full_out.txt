@@ -1,0 +1,53 @@
+Device: cuda
+Train: 4879  Val: 1222
+
+=== HarmonicCNN (5 seeds × 30 epochs) ===
+    params: 621,355
+  [HarmonicCNN seed 0] F1-macro: 0.6766
+  [HarmonicCNN seed 1] F1-macro: 0.6990
+  [HarmonicCNN seed 2] F1-macro: 0.6980
+  [HarmonicCNN seed 3] F1-macro: 0.6396
+  [HarmonicCNN seed 4] F1-macro: 0.6457
+  [HarmonicCNN] saved best (seed 1, F1=0.6990) → HarmonicCNN_best.pt
+
+=== HarmonicCNN+CosineLR (5 seeds × 30 epochs) ===
+    [CosineLR]
+    params: 621,355
+  [HarmonicCNN+CosineLR seed 0] F1-macro: 0.7150
+  [HarmonicCNN+CosineLR seed 1] F1-macro: 0.7099
+  [HarmonicCNN+CosineLR seed 2] F1-macro: 0.7156
+  [HarmonicCNN+CosineLR seed 3] F1-macro: 0.7048
+  [HarmonicCNN+CosineLR seed 4] F1-macro: 0.7090
+  [HarmonicCNN+CosineLR] saved best (seed 2, F1=0.7156) → HarmonicCNN_CosineLR_best.pt
+
+=== DeltaHarmonicCNN+CosineLR (5 seeds × 30 epochs) ===
+    [CosineLR]
+    params: 621,931
+  [DeltaHarmonicCNN+CosineLR seed 0] F1-macro: 0.7153
+  [DeltaHarmonicCNN+CosineLR seed 1] F1-macro: 0.7175
+  [DeltaHarmonicCNN+CosineLR seed 2] F1-macro: 0.7139
+  [DeltaHarmonicCNN+CosineLR seed 3] F1-macro: 0.7160
+  [DeltaHarmonicCNN+CosineLR seed 4] F1-macro: 0.7173
+  [DeltaHarmonicCNN+CosineLR] saved best (seed 1, F1=0.7175) → DeltaHarmonicCNN_CosineLR_best.pt
+
+─── Final comparison ───
+HarmonicCNN                          0.6718 ± 0.0252  ['0.6766', '0.6990', '0.6980', '0.6396', '0.6457']
+HarmonicCNN+CosineLR                 0.7109 ± 0.0040  ['0.7150', '0.7099', '0.7156', '0.7048', '0.7090']
+DeltaHarmonicCNN+CosineLR            0.7160 ± 0.0013  ['0.7153', '0.7175', '0.7139', '0.7160', '0.7173']
+
+  Best: DeltaHarmonicCNN+CosineLR
+
+Per-class F1 (mean over 5 seeds):
+  Class     HarmonicCNN  HarmonicCNN+C  DeltaHarmonic
+  -----------------------------------------------------
+  cel            0.636          0.693          0.714*
+  cla            0.638          0.690*         0.669 
+  flu            0.578          0.581          0.622*
+  gac            0.712          0.763*         0.763 
+  gel            0.587          0.634          0.652*
+  org            0.768          0.815*         0.814 
+  pia            0.746          0.809          0.830*
+  sax            0.546          0.607*         0.590 
+  tru            0.774          0.824*         0.791 
+  vio            0.584*         0.570          0.577 
+  voi            0.823          0.834          0.856*

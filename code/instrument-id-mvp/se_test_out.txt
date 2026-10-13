@@ -1,0 +1,4 @@
+Test clips: 2874
+DeepHarmonicCNN+CosineLR+PitchOnly        macro=0.4867  micro=0.5910  (val 0.8066)
+DeepHarmonicCNN+CosineLR+60ep             macro=0.4865  micro=0.5832  (val 0.7992)
+SEDeepHarmonicCNN+CosineLR  macro=0.4803  micro=0.5819  (val 0.8079)

@@ -1,0 +1,5 @@
+val F1 (training): 0.5565
+Test clips: 2874
+DeepHarmonicCNN_1sec (1s windows, thr=0.3): macro=0.4245  micro=0.5017
+DeepHarmonicCNN_1sec (1s windows, thr=0.5): macro=0.4245
+Reference: Han2017CNN (1s, thr=0.5): macro=0.501

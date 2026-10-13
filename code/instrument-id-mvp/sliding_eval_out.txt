@@ -1,0 +1,37 @@
+Device    : cuda
+Threshold : 0.3
+Window    : 130 frames (3 s), hop 65 (50% overlap)
+
+Test clips: 2874
+
+BasicCNN                             macro=0.4432  micro=0.5452  (val 0.7004)
+DeltaHarmonicCNN+CosineLR            macro=0.4736  micro=0.5693  (val 0.7175)
+Skipping Han2017CNN_best.pt (Han2017CNN not supported here)
+HarmonicCNN                          macro=0.4519  micro=0.5565  (val 0.6990)
+HarmonicCNN+CosineLR                 macro=0.4589  micro=0.5566  (val 0.7156)
+Skipping HarmonicHan2017CNN_best.pt (HarmonicHan2017CNN not supported here)
+
+Per-class F1 (sliding window, threshold=0.3):
+  Class           BasicCNN  DeltaHarmonicCNN       HarmonicCNN  HarmonicCNN+Cosi
+  ────────────────────────────────────────────────────────────────────────────────
+  cel               0.248             0.324*            0.252             0.291 
+  cla               0.104             0.126             0.103             0.136*
+  flu               0.391             0.433             0.458*            0.405 
+  gac               0.448             0.484             0.474             0.485*
+  gel               0.620             0.623             0.627             0.651*
+  org               0.363*            0.347             0.337             0.335 
+  pia               0.514             0.516*            0.496             0.485 
+  sax               0.602*            0.597             0.547             0.568 
+  tru               0.376             0.404*            0.383             0.396 
+  vio               0.372             0.482*            0.426             0.443 
+  voi               0.838             0.872*            0.868             0.853 
+
+─── Summary ───
+  DeltaHarmonicCNN+CosineLR            macro=0.4736  micro=0.5693
+  HarmonicCNN+CosineLR                 macro=0.4589  micro=0.5566
+  HarmonicCNN                          macro=0.4519  micro=0.5565
+  BasicCNN                             macro=0.4432  micro=0.5452
+
+Reference (1-second sliding window):
+  Han2017CNN (ours)            macro=0.501  micro=0.593
+  Han et al. 2017 (original)   macro=0.503  micro=0.602

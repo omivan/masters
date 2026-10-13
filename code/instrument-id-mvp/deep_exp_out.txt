@@ -1,0 +1,77 @@
+Device: cuda
+Train: 4879  Val: 1222
+Running 3 config(s): ['DeltaHarmonicCNN+CosineLR+Aug', 'DeltaHarmonicCNN+CosineLR+PitchOnly', 'DeepHarmonicCNN+CosineLR']
+
+=== DeltaHarmonicCNN+CosineLR+Aug (5 seeds × 60 epochs) ===
+    [pitch±2, SpecAugment, CosineLR]
+    params: 621,931
+  [DeltaHarmonicCNN+CosineLR+Aug seed 0] F1-macro: 0.6979
+  [DeltaHarmonicCNN+CosineLR+Aug seed 1] F1-macro: 0.6979
+  [DeltaHarmonicCNN+CosineLR+Aug seed 2] F1-macro: 0.7039
+  [DeltaHarmonicCNN+CosineLR+Aug seed 3] F1-macro: 0.6875
+  [DeltaHarmonicCNN+CosineLR+Aug seed 4] F1-macro: 0.6634
+  [DeltaHarmonicCNN+CosineLR+Aug] saved best (seed 2, F1=0.7039) → DeltaHarmonicCNN_CosineLR_Aug_best.pt
+
+=== DeltaHarmonicCNN+CosineLR+PitchOnly (5 seeds × 60 epochs) ===
+    [pitch±2, CosineLR]
+    params: 621,931
+  [DeltaHarmonicCNN+CosineLR+PitchOnly seed 0] F1-macro: 0.7634
+  [DeltaHarmonicCNN+CosineLR+PitchOnly seed 1] F1-macro: 0.7657
+  [DeltaHarmonicCNN+CosineLR+PitchOnly seed 2] F1-macro: 0.7563
+  [DeltaHarmonicCNN+CosineLR+PitchOnly seed 3] F1-macro: 0.7495
+  [DeltaHarmonicCNN+CosineLR+PitchOnly seed 4] F1-macro: 0.7487
+  [DeltaHarmonicCNN+CosineLR+PitchOnly] saved best (seed 1, F1=0.7657) → DeltaHarmonicCNN_CosineLR_PitchOnly_best.pt
+
+=== DeepHarmonicCNN+CosineLR (5 seeds × 60 epochs) ===
+    [CosineLR]
+    params: 655,467
+  [DeepHarmonicCNN+CosineLR seed 0] F1-macro: 0.7943
+  [DeepHarmonicCNN+CosineLR seed 1] F1-macro: 0.8072
+  [DeepHarmonicCNN+CosineLR seed 2] F1-macro: 0.7856
+  [DeepHarmonicCNN+CosineLR seed 3] F1-macro: 0.8008
+  [DeepHarmonicCNN+CosineLR seed 4] F1-macro: 0.7958
+  [DeepHarmonicCNN+CosineLR] saved best (seed 1, F1=0.8072) → DeepHarmonicCNN_CosineLR_best.pt
+
+─── Final comparison ───
+DeltaHarmonicCNN+CosineLR+Aug        0.6901 ± 0.0144  ['0.6979', '0.6979', '0.7039', '0.6875', '0.6634']
+DeltaHarmonicCNN+CosineLR+PitchOnly  0.7567 ± 0.0069  ['0.7634', '0.7657', '0.7563', '0.7495', '0.7487']
+DeepHarmonicCNN+CosineLR             0.7967 ± 0.0072  ['0.7943', '0.8072', '0.7856', '0.8008', '0.7958']
+
+  Best: DeepHarmonicCNN+CosineLR
+
+Per-class F1 (mean over 5 seeds):
+  Class   DeltaHarmonic  DeltaHarmonic  DeepHarmonicC
+  -----------------------------------------------------
+  cel            0.731          0.783          0.835*
+  cla            0.652          0.716          0.769*
+  flu            0.543          0.669          0.706*
+  gac            0.739          0.798          0.835*
+  gel            0.569          0.708          0.760*
+  org            0.786          0.819          0.862*
+  pia            0.812          0.851          0.898*
+  sax            0.546          0.630          0.690*
+  tru            0.791          0.821          0.846*
+  vio            0.574          0.644          0.658*
+  voi            0.850          0.885          0.904*
+
+─── Threshold tuning on val set ───
+
+  DeltaHarmonicCNN+CosineLR+Aug:
+    thr=0.15  val F1=0.6688
+    thr=0.20  val F1=0.6945
+    thr=0.25  val F1=0.6977
+    thr=0.30  val F1=0.7039 ←
+    thr=0.35  val F1=0.6919
+    thr=0.40  val F1=0.6816
+    thr=0.45  val F1=0.6707
+    thr=0.50  val F1=0.6562
+
+  DeltaHarmonicCNN+CosineLR+PitchOnly:
+    thr=0.15  val F1=0.7335
+    thr=0.20  val F1=0.7558
+    thr=0.25  val F1=0.7637
+    thr=0.30  val F1=0.7657 ←
+    thr=0.35  val F1=0.7648
+    thr=0.40  val F1=0.7617
+    thr=0.45  val F1=0.7561
+    thr=0.50  val F1=0.7462

@@ -1,0 +1,35 @@
+Device    : cuda
+Threshold : 0.3
+Window    : 130 frames (3 s), hop 65 (50% overlap)
+
+Test clips: 2874
+
+DeepExactHarmonicCNN+CosineLR [recording]  macro=0.4801  micro=0.5771  (val 0.7110)
+DeepExactOctaveCNN+CosineLR [recording]  macro=0.4854  micro=0.5832  (val 0.7202)
+DeepHarmonicCNN+CosineLR [recording]  macro=0.4823  micro=0.5769  (val 0.7237)
+DeepMelCNN+CosineLR [recording]      macro=0.4732  micro=0.5636  (val 0.7227)
+
+Per-class F1 (sliding window, threshold=0.3):
+  Class   DeepExactHarmoni  DeepExactOctaveC  DeepHarmonicCNN+  DeepMelCNN+Cosin
+  ────────────────────────────────────────────────────────────────────────────────
+  cel               0.229             0.269*            0.235             0.203 
+  cla               0.120             0.187             0.213*            0.170 
+  flu               0.475*            0.440             0.440             0.403 
+  gac               0.510             0.506             0.495             0.515*
+  gel               0.573             0.593*            0.562             0.547 
+  org               0.377             0.382             0.396*            0.386 
+  pia               0.503             0.510             0.512*            0.504 
+  sax               0.612             0.633             0.646*            0.624 
+  tru               0.502*            0.479             0.467             0.472 
+  vio               0.494*            0.451             0.433             0.490 
+  voi               0.886             0.889             0.906*            0.891 
+
+─── Summary ───
+  DeepExactOctaveCNN+CosineLR [recording]  macro=0.4854  micro=0.5832
+  DeepHarmonicCNN+CosineLR [recording]  macro=0.4823  micro=0.5769
+  DeepExactHarmonicCNN+CosineLR [recording]  macro=0.4801  micro=0.5771
+  DeepMelCNN+CosineLR [recording]      macro=0.4732  micro=0.5636
+
+Reference (1-second sliding window):
+  Han2017CNN (ours)            macro=0.501  micro=0.593
+  Han et al. 2017 (original)   macro=0.503  micro=0.602

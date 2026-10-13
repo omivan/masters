@@ -1,0 +1,48 @@
+Device: cuda
+Split: recording  Train: 4863  Val: 1238
+Running 1 config(s): ['DeepMelLogPonsMaxCNN+CosineLR+PolyMix']
+
+=== DeepMelLogPonsMaxCNN+CosineLR+PolyMix (1 seeds × 150 epochs) ===
+    [PolyMix(p=0.5, ±6 dB), CosineLR]
+    params: 656,091
+  [DeepMelLogPonsMaxCNN+CosineLR+PolyMix seed 0] F1-macro: 0.7279
+  [DeepMelLogPonsMaxCNN+CosineLR+PolyMix] saved best (seed 0, F1=0.7279) -> DeepMelLogPonsMaxCNN_CosineLR_PolyMix_ep150_rec_best.pt
+
+─── Final comparison ───
+DeepMelLogPonsMaxCNN+CosineLR+PolyMix  0.7279 ± 0.0000  ['0.7279']
+
+  Best: DeepMelLogPonsMaxCNN+CosineLR+PolyMix
+
+Per-class F1 (mean over 1 seeds):
+  Class   DeepMelLogPon
+  -----------------------
+  cel            0.738 
+  cla            0.711 
+  flu            0.640 
+  gac            0.731 
+  gel            0.617 
+  org            0.832 
+  pia            0.845 
+  sax            0.669 
+  tru            0.727 
+  vio            0.617 
+  voi            0.879 
+
+─── Threshold tuning on val set ───
+
+  DeepMelLogPonsMaxCNN+CosineLR+PolyMix:
+    thr=0.15  val F1=0.7038
+    thr=0.20  val F1=0.7084
+    thr=0.25  val F1=0.7213
+    thr=0.30  val F1=0.7279
+    thr=0.35  val F1=0.7256
+    thr=0.40  val F1=0.7271
+    thr=0.45  val F1=0.7284 ←
+    thr=0.50  val F1=0.7270
+
+─── Test set, every seed (1 seeds, S2 sliding window) ───
+
+  DeepMelLogPonsMaxCNN+CosineLR+PolyMix
+    thr 0.3:  macro 0.5138 ± 0.0000  [0.514]   micro 0.6131 ± 0.0000
+    thr 0.4:  macro 0.5194 ± 0.0000  [0.519]   micro 0.6165 ± 0.0000
+    thr 0.5:  macro 0.5172 ± 0.0000  [0.517]   micro 0.6134 ± 0.0000

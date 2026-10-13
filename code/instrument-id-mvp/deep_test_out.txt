@@ -1,0 +1,51 @@
+Device    : cuda
+Threshold : 0.3
+Window    : 130 frames (3 s), hop 65 (50% overlap)
+
+Test clips: 2874
+
+BasicCNN                             macro=0.4432  micro=0.5452  (val 0.7004)
+DeepHarmonicCNN+CosineLR             macro=0.4905  micro=0.5870  (val 0.8072)
+DeltaHarmonicCNN_1sec                macro=0.4410  micro=0.5334  (val 0.6260)
+DeltaHarmonicCNN+CosineLR+Aug        macro=0.4575  micro=0.5481  (val 0.7039)
+DeltaHarmonicCNN+CosineLR            macro=0.4736  micro=0.5693  (val 0.7175)
+DeltaHarmonicCNN+CosineLR+PitchOnly  macro=0.4813  micro=0.5825  (val 0.7657)
+Han2017CNN_3sec                      macro=0.4346  micro=0.5215  (val 0.6770)
+Han2017CNN                           macro=0.4851  micro=0.5694  (val 0.6362)
+HarmonicCNN                          macro=0.4519  micro=0.5565  (val 0.6990)
+HarmonicCNN+CosineLR                 macro=0.4589  micro=0.5566  (val 0.7156)
+HarmonicHan2017CNN_3sec              macro=0.4766  micro=0.5536  (val 0.6480)
+HarmonicHan2017CNN                   macro=0.4520  micro=0.5316  (val 0.6032)
+
+Per-class F1 (sliding window, threshold=0.3):
+  Class           BasicCNN  DeepHarmonicCNN+  DeltaHarmonicCNN  DeltaHarmonicCNN  DeltaHarmonicCNN  DeltaHarmonicCNN   Han2017CNN_3sec        Han2017CNN       HarmonicCNN  HarmonicCNN+Cosi  HarmonicHan2017C  HarmonicHan2017C
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  cel               0.248             0.240             0.372*            0.244             0.324             0.253             0.257             0.331             0.252             0.291             0.272             0.360 
+  cla               0.104             0.173             0.095             0.118             0.126             0.158             0.084             0.129             0.103             0.136             0.211*            0.149 
+  flu               0.391             0.439             0.362             0.431             0.433             0.460             0.362             0.538*            0.458             0.405             0.486             0.527 
+  gac               0.448             0.543*            0.438             0.457             0.484             0.500             0.474             0.510             0.474             0.485             0.428             0.469 
+  gel               0.620             0.519             0.618             0.590             0.623             0.601             0.571             0.637             0.627             0.651*            0.555             0.597 
+  org               0.363             0.366             0.367             0.370             0.347             0.391             0.372             0.406*            0.337             0.335             0.360             0.301 
+  pia               0.514             0.504             0.522*            0.505             0.516             0.514             0.481             0.496             0.496             0.485             0.475             0.461 
+  sax               0.602             0.669             0.532             0.570             0.597             0.617             0.488             0.466             0.547             0.568             0.704*            0.396 
+  tru               0.376             0.503*            0.380             0.420             0.404             0.436             0.338             0.387             0.383             0.396             0.462             0.367 
+  vio               0.372             0.529*            0.410             0.452             0.482             0.475             0.479             0.525             0.426             0.443             0.431             0.470 
+  voi               0.838             0.910             0.756             0.875             0.872             0.890             0.874             0.910*            0.868             0.853             0.859             0.876 
+
+─── Summary ───
+  DeepHarmonicCNN+CosineLR             macro=0.4905  micro=0.5870
+  Han2017CNN                           macro=0.4851  micro=0.5694
+  DeltaHarmonicCNN+CosineLR+PitchOnly  macro=0.4813  micro=0.5825
+  HarmonicHan2017CNN_3sec              macro=0.4766  micro=0.5536
+  DeltaHarmonicCNN+CosineLR            macro=0.4736  micro=0.5693
+  HarmonicCNN+CosineLR                 macro=0.4589  micro=0.5566
+  DeltaHarmonicCNN+CosineLR+Aug        macro=0.4575  micro=0.5481
+  HarmonicHan2017CNN                   macro=0.4520  micro=0.5316
+  HarmonicCNN                          macro=0.4519  micro=0.5565
+  BasicCNN                             macro=0.4432  micro=0.5452
+  DeltaHarmonicCNN_1sec                macro=0.4410  micro=0.5334
+  Han2017CNN_3sec                      macro=0.4346  micro=0.5215
+
+Reference (1-second sliding window):
+  Han2017CNN (ours)            macro=0.501  micro=0.593
+  Han et al. 2017 (original)   macro=0.503  micro=0.602

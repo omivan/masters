@@ -1,0 +1,15 @@
+Device: cuda
+Train: 4879  Val: 1222
+Running 2 config(s): ['DeepHarmonicCNN+CosineLR+60ep', 'SEDeepHarmonicCNN+CosineLR']
+
+=== DeepHarmonicCNN+CosineLR+60ep (1 seeds × 60 epochs) ===
+    [CosineLR]
+    params: 655,467
+  [DeepHarmonicCNN+CosineLR+60ep seed 0] F1-macro: 0.7992
+  [DeepHarmonicCNN+CosineLR+60ep] saved best (seed 0, F1=0.7992) -> DeepHarmonicCNN_CosineLR_60ep_best.pt
+
+=== SEDeepHarmonicCNN+CosineLR (1 seeds × 60 epochs) ===
+    [CosineLR]
+    params: 677,767
+  [SEDeepHarmonicCNN+CosineLR seed 0] F1-macro: 0.8079
+  [SEDeepHarmonicCNN+CosineLR] saved best (seed 0, F1=0.8079) -> SEDeepHarmonicCNN_CosineLR_best.pt

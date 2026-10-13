@@ -1,0 +1,78 @@
+Device: cuda
+Split: recording  Train: 4863  Val: 1238
+Running 2 config(s): ['DeepMelLogPonsCNN+CosineLR+PolyMix', 'DeepMelHPSPonsCNN+CosineLR+PolyMix']
+
+=== DeepMelLogPonsCNN+CosineLR+PolyMix (5 seeds × 30 epochs) ===
+    [PolyMix(p=0.5, ±6 dB), CosineLR]
+    params: 656,091
+  [DeepMelLogPonsCNN+CosineLR+PolyMix seed 0] F1-macro: 0.7079
+  [DeepMelLogPonsCNN+CosineLR+PolyMix seed 1] F1-macro: 0.7079
+  [DeepMelLogPonsCNN+CosineLR+PolyMix seed 2] F1-macro: 0.7030
+  [DeepMelLogPonsCNN+CosineLR+PolyMix seed 3] F1-macro: 0.7128
+  [DeepMelLogPonsCNN+CosineLR+PolyMix seed 4] F1-macro: 0.7097
+  [DeepMelLogPonsCNN+CosineLR+PolyMix] saved best (seed 3, F1=0.7128) -> DeepMelLogPonsCNN_CosineLR_PolyMix_rec_best.pt
+
+=== DeepMelHPSPonsCNN+CosineLR+PolyMix (5 seeds × 30 epochs) ===
+    [PolyMix(p=0.5, ±6 dB), CosineLR]
+    params: 656,299
+  [DeepMelHPSPonsCNN+CosineLR+PolyMix seed 0] F1-macro: 0.6666
+  [DeepMelHPSPonsCNN+CosineLR+PolyMix seed 1] F1-macro: 0.6596
+  [DeepMelHPSPonsCNN+CosineLR+PolyMix seed 2] F1-macro: 0.6671
+  [DeepMelHPSPonsCNN+CosineLR+PolyMix seed 3] F1-macro: 0.6582
+  [DeepMelHPSPonsCNN+CosineLR+PolyMix seed 4] F1-macro: 0.6742
+  [DeepMelHPSPonsCNN+CosineLR+PolyMix] saved best (seed 4, F1=0.6742) -> DeepMelHPSPonsCNN_CosineLR_PolyMix_rec_best.pt
+
+─── Final comparison ───
+DeepMelLogPonsCNN+CosineLR+PolyMix   0.7083 ± 0.0032  ['0.7079', '0.7079', '0.7030', '0.7128', '0.7097']
+DeepMelHPSPonsCNN+CosineLR+PolyMix   0.6652 ± 0.0058  ['0.6666', '0.6596', '0.6671', '0.6582', '0.6742']
+
+  Best: DeepMelLogPonsCNN+CosineLR+PolyMix
+
+Per-class F1 (mean over 5 seeds):
+  Class   DeepMelLogPon  DeepMelHPSPon
+  --------------------------------------
+  cel            0.650*         0.584 
+  cla            0.657*         0.618 
+  flu            0.576*         0.534 
+  gac            0.788*         0.741 
+  gel            0.575*         0.542 
+  org            0.791          0.790 
+  pia            0.845*         0.813 
+  sax            0.644*         0.544 
+  tru            0.749*         0.692 
+  vio            0.622*         0.585 
+  voi            0.894*         0.874 
+
+─── Threshold tuning on val set ───
+
+  DeepMelLogPonsCNN+CosineLR+PolyMix:
+    thr=0.15  val F1=0.6605
+    thr=0.20  val F1=0.6823
+    thr=0.25  val F1=0.6975
+    thr=0.30  val F1=0.7128
+    thr=0.35  val F1=0.7204
+    thr=0.40  val F1=0.7207 ←
+    thr=0.45  val F1=0.7115
+    thr=0.50  val F1=0.7039
+
+  DeepMelHPSPonsCNN+CosineLR+PolyMix:
+    thr=0.15  val F1=0.6124
+    thr=0.20  val F1=0.6505
+    thr=0.25  val F1=0.6656
+    thr=0.30  val F1=0.6742
+    thr=0.35  val F1=0.6799 ←
+    thr=0.40  val F1=0.6744
+    thr=0.45  val F1=0.6576
+    thr=0.50  val F1=0.6425
+
+─── Test set, every seed (5 seeds, S2 sliding window) ───
+
+  DeepMelLogPonsCNN+CosineLR+PolyMix
+    thr 0.3:  macro 0.4924 ± 0.0036  [0.489, 0.499, 0.492, 0.490, 0.492]   micro 0.5913 ± 0.0026
+    thr 0.4:  macro 0.5012 ± 0.0032  [0.499, 0.505, 0.501, 0.496, 0.504]   micro 0.5994 ± 0.0021
+    thr 0.5:  macro 0.5040 ± 0.0020  [0.503, 0.504, 0.505, 0.501, 0.507]   micro 0.6014 ± 0.0012
+
+  DeepMelHPSPonsCNN+CosineLR+PolyMix
+    thr 0.3:  macro 0.4734 ± 0.0031  [0.472, 0.470, 0.478, 0.471, 0.476]   micro 0.5665 ± 0.0053
+    thr 0.4:  macro 0.4883 ± 0.0018  [0.488, 0.486, 0.488, 0.489, 0.491]   micro 0.5825 ± 0.0036
+    thr 0.5:  macro 0.4915 ± 0.0028  [0.489, 0.489, 0.490, 0.495, 0.495]   micro 0.5868 ± 0.0039

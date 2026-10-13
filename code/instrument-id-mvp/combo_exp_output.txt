@@ -1,0 +1,50 @@
+Device: cpu
+Train: 440  Val: 110
+
+=== HarmonicCNN (1 seeds × 10 epochs) ===
+    params: 621,355
+  [HarmonicCNN seed 0] F1-macro: 0.1678
+
+=== HarmonicCNN+Mixup (1 seeds × 10 epochs) ===
+    [Mixup(α=0.4)]
+    params: 621,355
+  [HarmonicCNN+Mixup seed 0] F1-macro: 0.1606
+
+=== HarmonicCNN+pitch2+SpecAug (1 seeds × 10 epochs) ===
+    [pitch±2, SpecAugment]
+    params: 621,355
+  [HarmonicCNN+pitch2+SpecAug seed 0] F1-macro: 0.0566
+
+=== HarmonicCNN+CosineLR (1 seeds × 10 epochs) ===
+    [CosineLR]
+    params: 621,355
+  [HarmonicCNN+CosineLR seed 0] F1-macro: 0.1572
+
+=== DeltaHarmonicCNN+CosineLR (1 seeds × 10 epochs) ===
+    [CosineLR]
+    params: 621,931
+  [DeltaHarmonicCNN+CosineLR seed 0] F1-macro: 0.1707
+
+─── Final comparison ───
+HarmonicCNN                          0.1678 ± 0.0000  ['0.1678']
+HarmonicCNN+Mixup                    0.1606 ± 0.0000  ['0.1606']
+HarmonicCNN+pitch2+SpecAug           0.0566 ± 0.0000  ['0.0566']
+HarmonicCNN+CosineLR                 0.1572 ± 0.0000  ['0.1572']
+DeltaHarmonicCNN+CosineLR            0.1707 ± 0.0000  ['0.1707']
+
+  Best: DeltaHarmonicCNN+CosineLR
+
+Per-class F1 (mean over 1 seeds):
+  Class     HarmonicCNN  HarmonicCNN+M  HarmonicCNN+p  HarmonicCNN+C  DeltaHarmonic
+  -----------------------------------------------------------------------------------
+  cel            0.167*         0.000          0.000          0.167*         0.167*
+  cla            0.000          0.000          0.000          0.000          0.000 
+  flu            0.353*         0.308          0.000          0.286          0.154 
+  gac            0.190*         0.000          0.000          0.154          0.143 
+  gel            0.235          0.250          0.400*         0.250          0.250 
+  org            0.333          0.533          0.000          0.000          0.571*
+  pia            0.400          0.250          0.222          0.444*         0.286 
+  sax            0.000          0.000          0.000          0.000          0.000 
+  tru            0.167          0.308          0.000          0.429*         0.308 
+  vio            0.000          0.118*         0.000          0.000          0.000 
+  voi            0.000          0.000          0.000          0.000          0.000 

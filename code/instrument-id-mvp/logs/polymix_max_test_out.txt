@@ -1,0 +1,7 @@
+DeepExactOctaveCNN_CosineLR_PolyMix_rec_best   thr 0.30: macro=0.4613 micro=0.5563  |  thr 0.40: macro=0.4731 micro=0.5716  |  thr 0.50: macro=0.4780 micro=0.5780
+DeepMelCNN_CosineLR_PolyMix_rec_best           thr 0.30: macro=0.4966 micro=0.5891  |  thr 0.40: macro=0.5103 micro=0.5990  |  thr 0.50: macro=0.5143 micro=0.6019
+DeepExactOctaveMaxCNN_CosineLR_rec_best        thr 0.30: macro=0.4891 micro=0.5814  |  thr 0.40: macro=0.4974 micro=0.5862  |  thr 0.50: macro=0.5001 micro=0.5874
+DeepMelMaxCNN_CosineLR_rec_best                thr 0.30: macro=0.4942 micro=0.5839  |  thr 0.40: macro=0.4985 micro=0.5845  |  thr 0.50: macro=0.4969 micro=0.5838
+DeepExactOctaveCNN_CosineLR_rec_best           thr 0.30: macro=0.4854 micro=0.5830  |  thr 0.40: macro=0.4927 micro=0.5889  |  thr 0.50: macro=0.4987 micro=0.5921
+DeepMelCNN_CosineLR_rec_best                   thr 0.30: macro=0.4730 micro=0.5634  |  thr 0.40: macro=0.4815 micro=0.5695  |  thr 0.50: macro=0.4798 micro=0.5666
+ENSEMBLE(DeepExactOctaveCNN_CosineLR_PolyMix_rec_best + DeepMelCNN_CosineLR_PolyMix_rec_best + DeepExactOctaveMaxCNN_CosineLR_rec_best + DeepMelMaxCNN_CosineLR_rec_best + DeepExactOctaveCNN_CosineLR_rec_best + DeepMelCNN_CosineLR_rec_best)  thr 0.30: macro=0.4837 micro=0.5759  |  thr 0.40: macro=0.5017 micro=0.5944  |  thr 0.50: macro=0.5123 micro=0.6019

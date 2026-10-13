@@ -1,0 +1,11 @@
+Device    : cuda
+Threshold : 0.5
+Train: 4879  Val: 1222
+
+=== DeepHarmonicCNN_1sec  (655,467 params) ===
+  [DeepHarmonicCNN_1sec seed 0] val F1-macro: 0.5565
+  [DeepHarmonicCNN_1sec seed 1] val F1-macro: 0.4965
+  [DeepHarmonicCNN_1sec seed 2] val F1-macro: 0.4167
+  [DeepHarmonicCNN_1sec seed 3] val F1-macro: 0.5121
+  [DeepHarmonicCNN_1sec seed 4] val F1-macro: 0.5261
+Val F1-macro: mean=0.5016 ± 0.0468  (best seed 0: 0.5565)

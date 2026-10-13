@@ -1,0 +1,5 @@
+DeepMelCNN_CosineLR_GenreMix_rec_best          thr 0.30: macro=0.4927 micro=0.5868  |  thr 0.40: macro=0.4991 micro=0.5957  |  thr 0.50: macro=0.4972 micro=0.5961
+DeepMelFreqCNN_CosineLR_PolyMix_rec_best       thr 0.30: macro=0.4854 micro=0.5752  |  thr 0.40: macro=0.4960 micro=0.5830  |  thr 0.50: macro=0.4990 micro=0.5852
+DeepMelPonsCNN_CosineLR_PolyMix_rec_best       thr 0.30: macro=0.5007 micro=0.5986  |  thr 0.40: macro=0.5051 micro=0.6044  |  thr 0.50: macro=0.5100 micro=0.6069
+DeepMelCNN_CosineLR_PolyMix_rec_best           thr 0.30: macro=0.4966 micro=0.5891  |  thr 0.40: macro=0.5103 micro=0.5990  |  thr 0.50: macro=0.5143 micro=0.6019
+ENSEMBLE(DeepMelCNN_CosineLR_GenreMix_rec_best + DeepMelFreqCNN_CosineLR_PolyMix_rec_best + DeepMelPonsCNN_CosineLR_PolyMix_rec_best + DeepMelCNN_CosineLR_PolyMix_rec_best)  thr 0.30: macro=0.4926 micro=0.5875  |  thr 0.40: macro=0.5076 micro=0.6002  |  thr 0.50: macro=0.5173 micro=0.6066

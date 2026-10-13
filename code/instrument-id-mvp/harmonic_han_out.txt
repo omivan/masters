@@ -1,0 +1,36 @@
+Device    : cuda
+Threshold : 0.5
+Train: 4879  Val: 1222
+
+=== HarmonicHan2017CNN  (1,446,987 params) ===
+  [HarmonicHan2017CNN seed 0] val F1-macro: 0.5576
+  [HarmonicHan2017CNN seed 1] val F1-macro: 0.5934
+  [HarmonicHan2017CNN seed 2] val F1-macro: 0.5607
+  [HarmonicHan2017CNN seed 3] val F1-macro: 0.5197
+  [HarmonicHan2017CNN seed 4] val F1-macro: 0.6032
+Val F1-macro: mean=0.5669 ± 0.0296  (best seed 4: 0.6032)
+Saved → HarmonicHan2017CNN_best.pt
+
+Evaluating on test set (sliding window, threshold=0.5) — 2874 clips
+
+Config                     Val mean  Val std  Test macro  Test micro
+────────────────────────────────────────────────────────────────────
+HarmonicHan2017CNN           0.5669   0.0296      0.4651      0.5572
+
+Per-class F1 (test set, threshold=0.5):
+  Class   HarmonicHan2017CNN
+  ────────────────────────────
+  cel                 0.343 
+  cla                 0.129 
+  flu                 0.524 
+  gac                 0.461 
+  gel                 0.605 
+  org                 0.289 
+  pia                 0.452 
+  sax                 0.497 
+  tru                 0.437 
+  vio                 0.485 
+  voi                 0.896 
+
+Published SOTA:
+  Han et al. 2017 (original)   macro=0.503  micro=0.602

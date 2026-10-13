@@ -1,0 +1,45 @@
+Device: cuda
+Train: 4879  Val: 1222
+Running 1 config(s): ['DeltaHarmonicCNN+CosineLR+Aug']
+
+=== DeltaHarmonicCNN+CosineLR+Aug (5 seeds × 30 epochs) ===
+    [pitch±2, SpecAugment, CosineLR]
+    params: 621,931
+  [DeltaHarmonicCNN+CosineLR+Aug seed 0] F1-macro: 0.6236
+  [DeltaHarmonicCNN+CosineLR+Aug seed 1] F1-macro: 0.5869
+  [DeltaHarmonicCNN+CosineLR+Aug seed 2] F1-macro: 0.5989
+  [DeltaHarmonicCNN+CosineLR+Aug seed 3] F1-macro: 0.5797
+  [DeltaHarmonicCNN+CosineLR+Aug seed 4] F1-macro: 0.5560
+  [DeltaHarmonicCNN+CosineLR+Aug] saved best (seed 0, F1=0.6236) → DeltaHarmonicCNN_CosineLR_Aug_best.pt
+
+─── Final comparison ───
+DeltaHarmonicCNN+CosineLR+Aug        0.5890 ± 0.0223  ['0.6236', '0.5869', '0.5989', '0.5797', '0.5560']
+
+  Best: DeltaHarmonicCNN+CosineLR+Aug
+
+Per-class F1 (mean over 5 seeds):
+  Class   DeltaHarmonic
+  -----------------------
+  cel            0.610 
+  cla            0.576 
+  flu            0.466 
+  gac            0.645 
+  gel            0.461 
+  org            0.670 
+  pia            0.711 
+  sax            0.346 
+  tru            0.709 
+  vio            0.519 
+  voi            0.768 
+
+─── Threshold tuning on val set ───
+
+  DeltaHarmonicCNN+CosineLR+Aug:
+    thr=0.15  val F1=0.5953
+    thr=0.20  val F1=0.6108
+    thr=0.25  val F1=0.6197
+    thr=0.30  val F1=0.6236 ←
+    thr=0.35  val F1=0.6105
+    thr=0.40  val F1=0.5932
+    thr=0.45  val F1=0.5759
+    thr=0.50  val F1=0.5433

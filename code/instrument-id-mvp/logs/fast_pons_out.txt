@@ -1,0 +1,52 @@
+Device: cuda
+Split: recording  Train: 4863  Val: 1238
+Running 1 config(s): ['DeepMelPonsCNN+CosineLR+PolyMix']
+
+=== DeepMelPonsCNN+CosineLR+PolyMix (5 seeds × 30 epochs) ===
+    [PolyMix(p=0.5, ±6 dB), CosineLR]
+    params: 655,659
+  [DeepMelPonsCNN+CosineLR+PolyMix seed 0] F1-macro: 0.7011
+  [DeepMelPonsCNN+CosineLR+PolyMix seed 1] F1-macro: 0.6899
+  [DeepMelPonsCNN+CosineLR+PolyMix seed 2] F1-macro: 0.7067
+  [DeepMelPonsCNN+CosineLR+PolyMix seed 3] F1-macro: 0.7086
+  [DeepMelPonsCNN+CosineLR+PolyMix seed 4] F1-macro: 0.7046
+  [DeepMelPonsCNN+CosineLR+PolyMix] saved best (seed 3, F1=0.7086) -> DeepMelPonsCNN_CosineLR_PolyMix_rec_best.pt
+
+─── Final comparison ───
+DeepMelPonsCNN+CosineLR+PolyMix      0.7022 ± 0.0066  ['0.7011', '0.6899', '0.7067', '0.7086', '0.7046']
+
+  Best: DeepMelPonsCNN+CosineLR+PolyMix
+
+Per-class F1 (mean over 5 seeds):
+  Class   DeepMelPonsCN
+  -----------------------
+  cel            0.665 
+  cla            0.624 
+  flu            0.560 
+  gac            0.781 
+  gel            0.584 
+  org            0.786 
+  pia            0.850 
+  sax            0.634 
+  tru            0.731 
+  vio            0.618 
+  voi            0.892 
+
+─── Threshold tuning on val set ───
+
+  DeepMelPonsCNN+CosineLR+PolyMix:
+    thr=0.15  val F1=0.6556
+    thr=0.20  val F1=0.6890
+    thr=0.25  val F1=0.7018
+    thr=0.30  val F1=0.7086
+    thr=0.35  val F1=0.7142
+    thr=0.40  val F1=0.7153 ←
+    thr=0.45  val F1=0.7079
+    thr=0.50  val F1=0.6961
+
+─── Test set, every seed (5 seeds, S2 sliding window) ───
+
+  DeepMelPonsCNN+CosineLR+PolyMix
+    thr 0.3:  macro 0.4912 ± 0.0063  [0.479, 0.494, 0.493, 0.495, 0.495]   micro 0.5883 ± 0.0066
+    thr 0.4:  macro 0.5004 ± 0.0073  [0.487, 0.499, 0.504, 0.508, 0.504]   micro 0.5973 ± 0.0055
+    thr 0.5:  macro 0.5055 ± 0.0069  [0.493, 0.506, 0.507, 0.514, 0.508]   micro 0.6013 ± 0.0059

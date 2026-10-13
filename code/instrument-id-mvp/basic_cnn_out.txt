@@ -1,0 +1,32 @@
+Device: cuda
+Train: 4879  Val: 1222
+Running 1 config(s): ['BasicCNN']
+
+=== BasicCNN (5 seeds × 30 epochs) ===
+    params: 620,491
+  [BasicCNN seed 0] F1-macro: 0.6530
+  [BasicCNN seed 1] F1-macro: 0.6929
+  [BasicCNN seed 2] F1-macro: 0.6169
+  [BasicCNN seed 3] F1-macro: 0.6935
+  [BasicCNN seed 4] F1-macro: 0.7004
+  [BasicCNN] saved best (seed 4, F1=0.7004) → BasicCNN_best.pt
+
+─── Final comparison ───
+BasicCNN                             0.6713 ± 0.0319  ['0.6530', '0.6929', '0.6169', '0.6935', '0.7004']
+
+  Best: BasicCNN
+
+Per-class F1 (mean over 5 seeds):
+  Class        BasicCNN
+  -----------------------
+  cel            0.643 
+  cla            0.635 
+  flu            0.589 
+  gac            0.710 
+  gel            0.620 
+  org            0.792 
+  pia            0.839 
+  sax            0.494 
+  tru            0.718 
+  vio            0.561 
+  voi            0.783 
